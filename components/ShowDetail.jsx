@@ -28,16 +28,31 @@ const ShowDetail = () => {
 
   return (
     <>
-      <h1 className="text-2xl font-semibold">{post.title}</h1>
-      {post.categories.nodes.map((category) => (
-        <span key={category.slug}>{category.name}</span>
-      ))}
-      <div dangerouslySetInnerHTML={{ __html: post.content }}></div>
-      <FeaturedImage
-        src={post.featuredImage?.node?.mediaDetails?.file}
-        alt={post.title}
-      />
-      <Link href="/blog">Back</Link>
+      <div className="mx-auto max-w-[1200px] py-4 md:px-0">
+        <h1 className="text-2xl font-semibold">{post.title}</h1>
+        {post.categories.nodes.map((category) => (
+          <Link
+            href={`/categories/${category.slug}`}
+            key={category.slug}
+            className="my-2 mr-2 inline-flex bg-orange-200 px-4 py-2"
+          >
+            {category.name}
+          </Link>
+        ))}
+        <div className="flex flex-col">
+          <FeaturedImage
+            className="full-img flex"
+            src={post.featuredImage?.node?.mediaDetails?.file}
+            alt={post.title}
+          />
+          <div
+            className="article-height"
+            dangerouslySetInnerHTML={{ __html: post.content }}
+          ></div>
+        </div>
+
+        <Link href="/blog">Back</Link>
+      </div>
     </>
   );
 };

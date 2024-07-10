@@ -1,5 +1,5 @@
 const graphqlRequest = async (query) => {
-  const url = "http://localhost/gwi-tuk/graphql";
+  const url = `${process.env.NEXT_PUBLIC_API_URL}/graphql`;
   const headers = {
     "Content-type": "application/json",
   };
